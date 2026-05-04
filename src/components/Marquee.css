@@ -1,0 +1,33 @@
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+  animation: scroll 30s linear infinite;
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.marquee-track span {
+  color: var(--ink);
+}
+
+.marquee-track .dot {
+  color: var(--accent);
+  font-style: normal;
+}

@@ -1,0 +1,69 @@
+.skills-section {
+  background: var(--bg-elev);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.skill-cat {
+  padding: 32px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+  position: relative;
+}
+
+.skill-cat:hover {
+  background: var(--bg-card);
+}
+
+.skill-cat:hover .skill-cat-num {
+  color: var(--accent);
+}
+
+.skill-cat-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+  transition: color 0.3s;
+}
+
+.skill-cat h3 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.skill-cat ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-cat ul li {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--ink-dim);
+  transition: all 0.2s;
+}
+
+.skill-cat ul li:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
