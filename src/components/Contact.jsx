@@ -1,18 +1,25 @@
 import { personal } from '../data/personal';
+import ContactForm from './ContactForm';
 import './Contact.css';
 
 export default function Contact() {
   return (
     <section id="contact" className="cta-section" aria-labelledby="contact-title">
       <div className="cta-mark">
-        — Available for freelance · {personal.availableFor} —
+        — Open to {personal.openTo.join(' · ')} · {personal.availableFor} —
       </div>
 
       <h2 id="contact-title" className="cta-title">
-        Got a <em>frontend</em>
+        Let's <em>build</em>
         <br />
-        that needs solving?
+        something good.
       </h2>
+
+      <ContactForm />
+
+      <div className="cta-divider">
+        <span>Or reach out directly</span>
+      </div>
 
       <a href={`mailto:${personal.email}`} className="cta-email">
         {personal.email}
@@ -31,8 +38,8 @@ export default function Contact() {
             <span>·</span>
           </>
         )}
-        <a href={`tel:${personal.phoneRaw}`}>{personal.phone}</a>
-        <span>·</span>
+        {/* <a href={`tel:${personal.phoneRaw}`}>{personal.phone}</a> */}
+        {/* <span>·</span> */}
         <span>{personal.location}</span>
       </div>
     </section>

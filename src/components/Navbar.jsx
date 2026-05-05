@@ -5,10 +5,17 @@ import './Navbar.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -30,6 +37,11 @@ export default function Navbar() {
       <a href="#contact" className="cta">
         Hire me ↗
       </a>
+
+      {/* Scroll progress bar */}
+      <div className="nav-progress" aria-hidden="true">
+        <div className="nav-progress-fill" style={{ width: `${progress}%` }}></div>
+      </div>
     </nav>
   );
 }

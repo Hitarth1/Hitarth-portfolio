@@ -25,10 +25,8 @@ export const skills = [
     items: [
       'Redux',
       'Redux Toolkit',
-      'RTK Query',
       'Redux Saga',
       'Redux Thunk',
-      'Context API',
       'GraphQL',
       'REST APIs',
       'WebSocket',
@@ -43,6 +41,7 @@ export const skills = [
       'FCM',
       'Webhooks',
       'Payment gateways',
+      'In-app purchases',
     ],
   },
   {
@@ -86,5 +85,5 @@ export const marqueeItems = [
   'GraphQL',
   'Node.js',
   'Firebase',
-  'Performance',
+  'Performance Optimization',
 ];

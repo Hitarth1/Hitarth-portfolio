@@ -1,6 +1,6 @@
 .cta-section {
   text-align: center;
-  padding: 160px var(--gutter);
+  padding: 140px var(--gutter) 120px;
   position: relative;
   overflow: hidden;
 }
@@ -26,15 +26,17 @@
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-title {
   font-family: var(--serif);
-  font-size: clamp(56px, 10vw, 160px);
+  font-size: clamp(56px, 9vw, 140px);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
   position: relative;
   z-index: 1;
 }
@@ -44,17 +46,41 @@
   color: var(--accent);
 }
 
+/* Divider between form and direct contact */
+.cta-divider {
+  margin: 64px auto 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 480px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  position: relative;
+  z-index: 1;
+}
+
+.cta-divider::before,
+.cta-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
 .cta-email {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(24px, 3.5vw, 40px);
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink-dim);
   padding-bottom: 4px;
   transition: all 0.3s;
   display: inline-block;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 1;
 }

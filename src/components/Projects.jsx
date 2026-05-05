@@ -11,44 +11,121 @@ export default function Projects() {
         </h2>
       </div>
 
-      <div className="projects-list">
+      <div className="projects-mosaic">
         {projects.map((p, i) => {
           const num = String(i + 1).padStart(2, '0');
-          return (
-            <article className="project reveal" key={p.title}>
-              <div className="project-num">{num}</div>
+          const accent = p.accent || 'var(--accent)';
+          const isFeatured = p.featured;
 
-              <div>
-                <h3 className="project-title">
-                  <span className="domain">{p.domain}</span>
-                  {p.title}
-                </h3>
+          return (
+            <article
+              className={`pcard reveal ${isFeatured ? 'pcard-featured' : ''}`}
+              key={p.title}
+              style={{ '--card-accent': accent }}
+            >
+              {/* Visual side */}
+              <div className="pcard-visual">
+                {p.images ? (
+                  <div className="pcard-images">
+                    {p.images.map((src, idx) => (
+                      <img
+                        key={idx}
+                        src={src}
+                        alt={`${p.title} preview ${idx + 1}`}
+                        loading="lazy"
+                        className={`pcard-img pcard-img-${idx}`}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    ))}
+                  </div>
+                ) : p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`${p.title} preview`}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.classList.add('no-img');
+                    }}
+                  />
+                ) : null}
+                <div className="pcard-gradient"></div>
+                <div className="pcard-pattern" aria-hidden="true">
+                  {p.title.split('').slice(0, 3).map((c, idx) => (
+                    <span key={idx} style={{ animationDelay: `${idx * 0.15}s` }}>{c}</span>
+                  ))}
+                </div>
+                {p.metric && (
+                  <div className="pcard-metric">
+                    <span className="metric-dot"></span>
+                    {p.metric}
+                  </div>
+                )}
               </div>
 
-              <div>
-                <p className="project-desc">{p.desc}</p>
-                <div className="project-tags">
+              {/* Content side */}
+              <div className="pcard-body">
+                <div className="pcard-top">
+                  <span className="pcard-num">{num}</span>
+                  <span className="pcard-year">{p.year}</span>
+                </div>
+
+                <div className="pcard-domain">{p.domain}</div>
+                <h3 className="pcard-title">{p.title}</h3>
+                <p className="pcard-desc">{p.desc}</p>
+
+                <div className="pcard-tags">
                   {p.tags.map((t) => (
                     <span key={t}>{t}</span>
                   ))}
                 </div>
-              </div>
 
-              {p.link ? (
-                <a
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-arrow"
-                  aria-label={`Visit ${p.title}`}
-                >
-                  ↗
-                </a>
-              ) : (
-                <span className="project-arrow no-link" aria-hidden="true">
-                  ↗
-                </span>
-              )}
+                <div className="pcard-foot">
+                  {p.linkAndroid || p.linkIOS || p.link ? (
+                    <>
+                      <span className="pcard-text">View live:</span>
+                      {p.linkAndroid && (
+                        <a
+                          href={p.linkAndroid}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pcard-link"
+                        >
+                          <span>Android</span>
+                          <span className="arrow">↗</span>
+                        </a>
+                      )}
+                      {p.linkIOS && (
+                        <a
+                          href={p.linkIOS}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pcard-link"
+                        >
+                          <span>IOS</span>
+                          <span className="arrow">↗</span>
+                      </a>)}
+                      {p.link && (
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pcard-link"
+                      >
+                        <span>Web</span>
+                        <span className="arrow">↗</span>
+                      </a>)}
+                    </>
+                  ) : (
+                    <span className="pcard-link disabled">
+                      <span>Private / NDA</span>
+                      <span className="arrow">⊘</span>
+                    </span>
+                  )}
+                </div>
+              </div>
             </article>
           );
         })}

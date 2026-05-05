@@ -13,6 +13,12 @@
   background: rgba(14, 13, 11, 0.6);
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s, padding 0.3s;
+  transform: translateY(-100%);
+  animation: navIn 0.8s var(--ease-out-expo) 0.1s forwards;
+}
+
+@keyframes navIn {
+  to { transform: translateY(0); }
 }
 
 .top-nav.scrolled {
@@ -30,6 +36,11 @@
   gap: 10px;
   color: var(--ink);
   text-decoration: none;
+  transition: color 0.3s;
+}
+
+.top-nav .brand:hover {
+  color: var(--accent);
 }
 
 .top-nav .brand .dot {
@@ -38,6 +49,7 @@
   background: var(--accent);
   border-radius: 50%;
   animation: pulse 2s infinite;
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .top-nav ul {
@@ -60,6 +72,7 @@
   text-transform: uppercase;
   position: relative;
   transition: color 0.2s;
+  padding: 4px 0;
 }
 
 .top-nav ul a::before {
@@ -68,8 +81,23 @@
   margin-right: 4px;
 }
 
+.top-nav ul a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
 .top-nav ul a:hover {
   color: var(--accent);
+}
+
+.top-nav ul a:hover::after {
+  width: 100%;
 }
 
 .top-nav .cta {
@@ -89,6 +117,26 @@
   background: var(--accent);
   border-color: var(--accent);
   color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 122, 26, 0.3);
+}
+
+/* Scroll progress bar */
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.nav-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 @media (max-width: 880px) {
